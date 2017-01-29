@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "source .env && babel-node index",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -11,6 +12,7 @@
   "dependencies": {
     "async": "^2.1.4",
     "axios": "^0.15.3",
+    "cli-table2": "^0.2.0",
     "fb": "^1.1.1",
     "moment": "^2.17.1",
     "ramda": "^0.23.0",

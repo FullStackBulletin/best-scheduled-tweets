@@ -9,7 +9,7 @@ const getUrlInfo = app => (url, cb) => {
   });
 };
 
-export const getUrlsInfo = (app, urls) => new Promise((resolve, reject) => {
+export const getUrlsInfo = app => urls => new Promise((resolve, reject) => {
   const getInfo = getUrlInfo(app);
   const limit = 10;
   mapLimit(urls, limit, getInfo, (err, urlsInfo) => {

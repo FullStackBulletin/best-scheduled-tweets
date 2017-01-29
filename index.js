@@ -7,8 +7,12 @@ import { getLastTweets } from './src/getLastTweets';
 import { takeOnesFromHootsuite } from './src/takeOnesFromHootsuite';
 import { takeOnesAfterReferenceMoment } from './src/takeOnesAfterReferenceMoment';
 import { extractLinks } from './src/extractLinks';
+import { unique } from './src/unique';
 import { unshortenLinks } from './src/unshortenLinks';
 import { getUrlsInfo } from './src/getUrlsInfo';
+import { addUrlsScore } from './src/addUrlsScore';
+import { sortByScore } from './src/sortByScore';
+import { takeN } from './src/takeN';
 
 const twitterClient = new Twitter({
   consumer_key: process.env.TWITTER_CONSUMER_KEY,
@@ -28,23 +32,23 @@ const maxTweets = 200;
 const referenceMoment = moment().subtract('1', 'week').startOf('day');
 
 const print = data => console.log(JSON.stringify(data, null, 2));
+const prettyPrint = (data) => {
+  data.forEach((record, i) => {
+    console.log(`---- ${i} ----`);
+    print(record);
+  });
+};
 
 pipePromises(
   () => getLastTweets(twitterClient, screenName, maxTweets),
   takeOnesFromHootsuite,
-  tweets => takeOnesAfterReferenceMoment(tweets, referenceMoment),
+  takeOnesAfterReferenceMoment(referenceMoment),
   extractLinks,
+  unique,
   unshortenLinks,
-  links => getUrlsInfo(fbApp, links),
-  print,
+  getUrlsInfo(fbApp),
+  addUrlsScore,
+  sortByScore,
+  takeN(7),
+  prettyPrint,
 );
-
-// const getTweets = () => {};
-// const takeOnlyOnesFromHootsuite = () => {};
-// const takeOnlyPreviousWeek = () => {};
-// const extractLinks = () => {};
-// const unshortenLinks = () => {};
-// const getUrlInfos = () => {};
-// const calculateUrlScore = () => {};
-// const sortLinksByScore = () => {};
-// const takeN = () => {};
