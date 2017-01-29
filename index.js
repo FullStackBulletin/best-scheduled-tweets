@@ -2,7 +2,8 @@ import Twitter from 'twitter';
 import { Facebook } from 'fb';
 import cloudinary from 'cloudinary';
 import moment from 'moment';
-import { autoRetrieveAccessToken } from './src/fbUtils';
+import { autoRetrieveAccessToken } from './src/utils/fb';
+import { persistedMemoize } from './src/utils/persistedMemoize';
 import { bestScheduledTweets } from './src/bestScheduledTweets';
 
 const twitterClient = new Twitter({
@@ -29,5 +30,5 @@ const referenceMoment = moment().subtract('1', 'week').startOf('day');
 
 const print = data => console.log(JSON.stringify(data, null, 2));
 
-const getLinks = bestScheduledTweets(twitterClient, fbApp, cloudinary);
+const getLinks = persistedMemoize('./.cache', 'bst')(bestScheduledTweets(twitterClient, fbApp, cloudinary));
 getLinks(screenName, referenceMoment).then(print);
