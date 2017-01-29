@@ -13,6 +13,7 @@ import { getUrlsInfo } from './src/getUrlsInfo';
 import { addUrlsScore } from './src/addUrlsScore';
 import { sortByScore } from './src/sortByScore';
 import { takeN } from './src/takeN';
+import { retrieveLinksImage } from './src/retrieveLinksImage';
 
 const twitterClient = new Twitter({
   consumer_key: process.env.TWITTER_CONSUMER_KEY,
@@ -50,5 +51,6 @@ pipePromises(
   addUrlsScore,
   sortByScore,
   takeN(7),
-  prettyPrint,
+  retrieveLinksImage,
+  print,
 );
