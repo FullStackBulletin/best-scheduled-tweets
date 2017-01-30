@@ -5,10 +5,12 @@
   "main": "index.js",
   "scripts": {
     "start": "source .env && babel-node index",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test:lint": "eslint src/**/*.js test/**/*.test.js",
+    "test:unit": "echo 'No unit tests at the moment'",
+    "test": "npm run test:lint && npm run test:unit"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Luciano Mammino",
+  "license": "MIT",
   "dependencies": {
     "async": "^2.1.4",
     "cloudinary": "^1.5.0",

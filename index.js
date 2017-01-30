@@ -1,3 +1,5 @@
+/* eslint no-console: 0 */
+
 import Twitter from 'twitter';
 import { Facebook } from 'fb';
 import cloudinary from 'cloudinary';
