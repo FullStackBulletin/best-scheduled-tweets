@@ -1,4 +1,4 @@
-import { pipePromises } from './pipePromises';
+import { pipePromises } from './utils/pipePromises';
 import { getLastTweets } from './getLastTweets';
 import { takeOnesFromHootsuite } from './takeOnesFromHootsuite';
 import { takeOnesAfterReferenceMoment } from './takeOnesAfterReferenceMoment';
