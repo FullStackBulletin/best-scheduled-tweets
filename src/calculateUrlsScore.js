@@ -10,8 +10,8 @@ export const calculateUrlScore = (urlInfo) => {
   return 0;
 };
 
-export const addUrlsScore = urlsInfo => urlsInfo.map(
+export const calculateUrlsScore = urlsInfo => urlsInfo.map(
   urlInfo => Object.assign(urlInfo, { score: calculateUrlScore(urlInfo) }),
 );
 
-export default addUrlsScore;
+export default calculateUrlsScore;

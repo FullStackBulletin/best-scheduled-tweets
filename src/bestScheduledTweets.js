@@ -6,10 +6,13 @@ import { extractLinks } from './extractLinks';
 import { unique } from './unique';
 import { unshortenLinks } from './unshortenLinks';
 import { getUrlsInfo } from './getUrlsInfo';
-import { addUrlsScore } from './addUrlsScore';
+import { retrieveMetadata } from './retrieveMetadata';
+import { addCanonicalUrls } from './addCanonicalUrls';
+import { uniqueBy } from './uniqueBy';
+import { calculateUrlsScore } from './calculateUrlsScore';
 import { sortByScore } from './sortByScore';
 import { takeN } from './takeN';
-import { retrieveLinksImage } from './retrieveLinksImage';
+import { addImageUrls } from './addImageUrls';
 import { uploadImagesToCloudinary } from './uploadImagesToCloudinary';
 import { keepMinimalData } from './keepMinimalData';
 
@@ -22,11 +25,15 @@ export const bestScheduledTweets = (twitterClient, fbApp, cloudinary) =>
       extractLinks,
       unique,
       unshortenLinks,
+      unique,
       getUrlsInfo(fbApp),
-      addUrlsScore,
+      retrieveMetadata,
+      addCanonicalUrls,
+      uniqueBy('url'),
+      calculateUrlsScore,
       sortByScore,
       takeN(options.limit),
-      retrieveLinksImage,
+      addImageUrls,
       uploadImagesToCloudinary(cloudinary),
       keepMinimalData,
     )

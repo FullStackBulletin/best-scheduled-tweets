@@ -18,10 +18,12 @@
     "meta-extractor": "^1.0.7",
     "moment": "^2.17.1",
     "object-path": "^0.11.3",
+    "object-values": "^1.0.0",
     "request": "^2.79.0",
     "twitter": "^1.7.0"
   },
   "devDependencies": {
+    "ava": "^0.18.1",
     "babel-cli": "^6.22.2",
     "babel-core": "^6.22.1",
     "babel-loader": "^6.2.10",
