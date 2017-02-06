@@ -27,10 +27,10 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-const screenName = process.env.TWITTER_SCREEN_NAME;
+const screenNames = process.env.TWITTER_SCREEN_NAMES.split(',');
 const referenceMoment = moment().subtract('1', 'week').startOf('day');
 
 const print = data => console.log(JSON.stringify(data, null, 2));
 
 const getLinks = persistedMemoize('./.cache', 'bst')(bestScheduledTweets(twitterClient, fbApp, cloudinary));
-getLinks(screenName, referenceMoment).then(print);
+getLinks(screenNames, referenceMoment).then(print);

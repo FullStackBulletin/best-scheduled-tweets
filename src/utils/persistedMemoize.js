@@ -16,7 +16,7 @@ export const persistedMemoize = (cacheDir, scope) =>
         originalFn(...args)
         .then(
           originalData => new Promise(res =>
-            writeFile(cachedFile, JSON.stringify(originalData), 'utf8', () => res(originalData)),
+            writeFile(cachedFile, JSON.stringify(originalData, null, 2), 'utf8', () => res(originalData)),
           ),
         ),
       );

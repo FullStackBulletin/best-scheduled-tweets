@@ -4,6 +4,7 @@ import { takeOnesFromHootsuite } from './takeOnesFromHootsuite';
 import { takeOnesAfterReferenceMoment } from './takeOnesAfterReferenceMoment';
 import { extractLinks } from './extractLinks';
 import { unique } from './unique';
+import { removeUndefined } from './removeUndefined';
 import { unshortenLinks } from './unshortenLinks';
 import { getUrlsInfo } from './getUrlsInfo';
 import { retrieveMetadata } from './retrieveMetadata';
@@ -17,14 +18,15 @@ import { uploadImagesToCloudinary } from './uploadImagesToCloudinary';
 import { keepMinimalData } from './keepMinimalData';
 
 export const bestScheduledTweets = (twitterClient, fbApp, cloudinary) =>
-  (screenName, referenceMoment, options = { maxTweets: 200, limit: 7 }) =>
+  (screenNames, referenceMoment, options = { maxTweets: 200, limit: 7 }) =>
     pipePromises(
-      () => getLastTweets(twitterClient, screenName, options.maxTweets),
+      () => getLastTweets(twitterClient, screenNames, options.maxTweets),
       takeOnesFromHootsuite,
       takeOnesAfterReferenceMoment(referenceMoment),
       extractLinks,
       unique,
       unshortenLinks,
+      removeUndefined,
       unique,
       getUrlsInfo(fbApp),
       retrieveMetadata,

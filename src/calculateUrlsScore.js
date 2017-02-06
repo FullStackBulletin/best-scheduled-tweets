@@ -11,7 +11,7 @@ export const calculateUrlScore = (urlInfo) => {
 };
 
 export const calculateUrlsScore = urlsInfo => urlsInfo.map(
-  urlInfo => Object.assign(urlInfo, { score: calculateUrlScore(urlInfo) }),
+  urlInfo => ({ ...urlInfo, score: calculateUrlScore(urlInfo) }),
 );
 
 export default calculateUrlsScore;

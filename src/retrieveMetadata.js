@@ -10,7 +10,7 @@ const retrieveMetadataFromLink = (link, cb) => {
 
     const image = coalesce(metadata, ['ogImage', 'twitterImageSrc'], null);
 
-    return cb(null, Object.assign(metadata, { image, metadata }));
+    return cb(null, { ...link, image, metadata });
   });
 };
 

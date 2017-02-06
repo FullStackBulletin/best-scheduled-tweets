@@ -16,7 +16,7 @@ const uploadImageToCloudinary = cloudinaryClient => (urlInfo, cb) => {
     };
     const image = cloudinaryClient.url(uploadedInfo.public_id, transformations);
 
-    return cb(null, Object.assign(urlInfo, { image, originalImage: urlInfo.image }));
+    return cb(null, { ...urlInfo, image, originalImage: urlInfo.image });
   });
 };
 
