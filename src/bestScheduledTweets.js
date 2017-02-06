@@ -17,9 +17,9 @@ import { uploadImagesToCloudinary } from './uploadImagesToCloudinary';
 import { keepMinimalData } from './keepMinimalData';
 
 export const bestScheduledTweets = (twitterClient, fbApp, cloudinary) =>
-  (screenName, referenceMoment, options = { maxTweets: 200, limit: 7 }) =>
+  (screenNames, referenceMoment, options = { maxTweets: 200, limit: 7 }) =>
     pipePromises(
-      () => getLastTweets(twitterClient, screenName, options.maxTweets),
+      () => getLastTweets(twitterClient, screenNames, options.maxTweets),
       takeOnesFromHootsuite,
       takeOnesAfterReferenceMoment(referenceMoment),
       extractLinks,

@@ -1,16 +1,14 @@
-export const getLastTweets = (client, screenName, maxTweets) => new Promise((resolve, reject) => {
+const getLastTweetsPerUser = (client, screenName, maxTweets) => (cb) => {
   const options = {
     screen_name: screenName,
     count: maxTweets,
   };
 
-  client.get('statuses/user_timeline', options, (err, tweets) => {
-    if (err) {
-      return reject(err);
-    }
+  return client.get('statuses/user_timeline', options, cb);
+};
 
-    return resolve(tweets);
-  });
+export const getLastTweets = (client, screenName, maxTweets) => new Promise((resolve, reject) => {
+  // TODO use maplimit to get all the tweets per all the users
 });
 
 export default getLastTweets;
