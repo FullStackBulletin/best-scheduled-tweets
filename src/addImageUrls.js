@@ -7,7 +7,7 @@ export const addImageUrls = links => links.map((link) => {
       `http://placehold.it/350x150/ffffff/0000000&text=${encodeURIComponent(link.metadata.host)}`;
   const image = coalesce(link.metadata, ['ogImage', 'twitterImageSrc'], defaultImage);
 
-  return Object.assign(link, { image });
+  return { ...link, image };
 });
 
 export default addImageUrls;
