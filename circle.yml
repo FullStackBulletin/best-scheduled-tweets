@@ -13,3 +13,7 @@ dependencies:
 test:
   override:
     - yarn test
+  post:
+    - mkdir -p $CIRCLE_TEST_REPORTS/junit/
+    - node_modules/.bin/tap-xunit < .test_results.txt > $CIRCLE_TEST_REPORTS/junit/test-results.xml
+    - node_modules/.bin/nyc report --reporter=lcov && mv coverage/lcov-report  $CIRCLE_TEST_REPORTS/coverage
