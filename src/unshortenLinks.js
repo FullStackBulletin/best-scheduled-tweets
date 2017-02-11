@@ -1,8 +1,7 @@
 import { mapLimit } from 'async';
-import { get } from 'request';
 
-const unshortenLink = (link, cb) => {
-  get({ url: link, followRedirect: false }, (err, response) => {
+const unshortenLink = request => (link, cb) => {
+  request.get({ url: link, followRedirect: false }, (err, response) => {
     if (err) {
       // if cannot ping the link mark it as undefined so that it can be removed later
       return cb(null, undefined);
@@ -12,15 +11,14 @@ const unshortenLink = (link, cb) => {
   });
 };
 
-export const unshortenLinks = links => new Promise((resolve, reject) => {
+export const unshortenLinks = request => links => new Promise((resolve) => {
   const limit = 10;
-  mapLimit(links, limit, unshortenLink, (err, unshortenedLinks) => {
-    if (err) {
-      return reject(err);
-    }
-
-    return resolve(unshortenedLinks);
-  });
+  mapLimit(
+    links,
+    limit,
+    unshortenLink(request),
+    (err, unshortenedLinks) => resolve(unshortenedLinks),
+  );
 });
 
 export default unshortenLinks;
