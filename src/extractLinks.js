@@ -1,5 +1,7 @@
 export const extractLinks = tweets => tweets.reduce((links, tweet) =>
-  links.concat(tweet.entities.urls.map(link => link.expanded_url))
+  tweet.entities.urls ?
+    links.concat(tweet.entities.urls.map(link => link.expanded_url)) :
+    links
 , []);
 
 export default extractLinks;
