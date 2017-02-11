@@ -28,12 +28,12 @@ test('it should use the twitter client to retrieve last tweets for every user', 
 test('It should reject if one of the api calls to twitter fails', (t) => {
   const twitterClient = {
     get: spy(
-      (api, options, cb) => setImmediate(() => cb(`Error for ${options.screen_name}`)),
+      (api, options, cb) => setImmediate(() => cb(new Error(`Error for ${options.screen_name}`))),
     ),
   };
 
   const screenNames = ['andreaman87', 'loige'];
   const maxTweets = 20;
 
-  t.throws(getLastTweets(twitterClient, screenNames, maxTweets));
+  t.throws(getLastTweets(twitterClient, screenNames, maxTweets), 'Error for andreaman87');
 });
