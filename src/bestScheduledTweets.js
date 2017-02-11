@@ -6,6 +6,7 @@ import { takeOnesFromHootsuite } from './takeOnesFromHootsuite';
 import { takeOnesAfterReferenceMoment } from './takeOnesAfterReferenceMoment';
 import { extractLinks } from './extractLinks';
 import { unique } from './unique';
+import { removeBlacklistedUrls } from './removeBlacklistedUrls';
 import { removeUndefined } from './removeUndefined';
 import { unshortenLinks } from './unshortenLinks';
 import { getUrlsInfo } from './getUrlsInfo';
@@ -30,6 +31,7 @@ export const bestScheduledTweets = (twitterClient, fbApp, cloudinary) =>
       unshortenLinks(request),
       removeUndefined,
       unique,
+      removeBlacklistedUrls([]),
       getUrlsInfo(fbApp),
       retrieveMetadata(metaExtractor),
       addCanonicalUrls,
