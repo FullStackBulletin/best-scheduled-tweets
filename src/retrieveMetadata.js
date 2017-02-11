@@ -1,9 +1,8 @@
 import { mapLimit } from 'async';
-import extract from 'meta-extractor';
 import { coalesce } from 'object-path';
 
-const retrieveMetadataFromLink = (link, cb) => {
-  extract({ uri: link.id }, (err, metadata) => {
+const retrieveMetadataFromLink = metaExtractor => (link, cb) => {
+  metaExtractor({ uri: link.id }, (err, metadata) => {
     if (err) {
       return cb(err);
     }
@@ -14,9 +13,9 @@ const retrieveMetadataFromLink = (link, cb) => {
   });
 };
 
-export const retrieveMetadata = links => new Promise((resolve, reject) => {
+export const retrieveMetadata = metaExtractor => links => new Promise((resolve, reject) => {
   const limit = 10;
-  mapLimit(links, limit, retrieveMetadataFromLink, (err, linksWithMetadata) => {
+  mapLimit(links, limit, retrieveMetadataFromLink(metaExtractor), (err, linksWithMetadata) => {
     if (err) {
       return reject(err);
     }

@@ -1,9 +1,9 @@
 import { coalesce } from 'object-path';
 
-export const addCanonicalUrls = links =>
-  links.map(link => ({
-    ...link,
-    url: coalesce(link, ['metadata.ogUrl', 'id']),
+export const addCanonicalUrls = linksData =>
+  linksData.map(linkData => ({
+    ...linkData,
+    url: coalesce(linkData, ['metadata.ogUrl', 'id']),
   }))
 ;
 
