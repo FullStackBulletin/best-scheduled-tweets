@@ -1,3 +1,4 @@
+import metaExtractor from 'meta-extractor';
 import { pipePromises } from './utils/pipePromises';
 import { getLastTweets } from './getLastTweets';
 import { takeOnesFromHootsuite } from './takeOnesFromHootsuite';
@@ -29,7 +30,7 @@ export const bestScheduledTweets = (twitterClient, fbApp, cloudinary) =>
       removeUndefined,
       unique,
       getUrlsInfo(fbApp),
-      retrieveMetadata,
+      retrieveMetadata(metaExtractor),
       addCanonicalUrls,
       uniqueBy('url'),
       calculateUrlsScore,
