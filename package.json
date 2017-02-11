@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "source .env && babel-node index",
-    "test:lint": "eslint src/**/*.js test/**/*.test.js",
+    "test:lint": "eslint src/**.js test/**.test.js",
     "test:unit": "nyc ava --tap test/*.test.js test/**/*.test.js | tee .test_results.txt | tap-spec",
     "test": "npm run test:lint && npm run test:unit"
   },
