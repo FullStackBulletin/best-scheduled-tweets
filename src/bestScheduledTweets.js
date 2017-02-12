@@ -17,32 +17,40 @@ import { calculateUrlsScore } from './calculateUrlsScore';
 import { sortByScore } from './sortByScore';
 import { takeN } from './takeN';
 import { addImageUrls } from './addImageUrls';
-import { uploadImagesToCloudinary } from './uploadImagesToCloudinary';
 import { keepMinimalData } from './keepMinimalData';
 
-export const bestScheduledTweets = (twitterClient, fbApp, cloudinary) =>
-  (screenNames, referenceMoment, options = { maxTweets: 200, limit: 7 }) =>
-    pipePromises(
-      () => getLastTweets(twitterClient, screenNames, options.maxTweets),
-      takeOnesFromHootsuite,
-      takeOnesAfterReferenceMoment(referenceMoment),
-      extractLinks,
-      unique,
-      unshortenLinks(request),
-      removeUndefined,
-      unique,
-      removeBlacklistedUrls([]),
-      getUrlsInfo(fbApp),
-      retrieveMetadata(metaExtractor),
-      addCanonicalUrls,
-      uniqueBy('url'),
-      calculateUrlsScore,
-      sortByScore,
-      takeN(options.limit),
-      addImageUrls,
-      uploadImagesToCloudinary(cloudinary),
-      keepMinimalData,
-    )
-;
+export const defaultOptions = {
+  twitterClient: undefined,
+  fbApp: undefined,
+  referenceMoment: undefined,
+  screenNames: [],
+  maxTweetsPerUser: 200,
+  numResults: 7,
+  blacklistedUrls: [],
+};
+
+export const bestScheduledTweets = (options) => {
+  const opt = { ...defaultOptions, ...options };
+  return pipePromises(
+    () => getLastTweets(opt.twitterClient, opt.screenNames, opt.maxTweetsPerUser),
+    takeOnesFromHootsuite,
+    takeOnesAfterReferenceMoment(opt.referenceMoment),
+    extractLinks,
+    unique,
+    unshortenLinks(request),
+    removeUndefined,
+    unique,
+    removeBlacklistedUrls([]),
+    getUrlsInfo(opt.fbApp),
+    retrieveMetadata(metaExtractor),
+    addCanonicalUrls,
+    uniqueBy('url'),
+    calculateUrlsScore,
+    sortByScore,
+    takeN(opt.numResults),
+    addImageUrls,
+    keepMinimalData,
+  );
+};
 
 export default bestScheduledTweets;
