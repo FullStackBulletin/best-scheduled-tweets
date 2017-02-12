@@ -1,6 +1,13 @@
 node_modules/
 .env
-.cache/
 .nyc_output/
 .test_results.txt
 coverage/
+.babel_cache/
+test/
+.babelrc
+.editorconfig
+.env~sample
+.eslintrc.js
+circle.yml
+webpack.config.babel.js
