@@ -58,7 +58,7 @@ const bestLinks = bestScheduledTweets(options);
 
 Internally the library will perform several http requests (Twitter API, Facebook API, URL unshortening, metadata retrieval, ...) so the processing might take a while. Be sure your environment can run for more than 10 seconds and be prepared to use caching mechanisms if needed.
 
-### Options
+#### Options
 
 The options available are the following:
 
@@ -91,6 +91,74 @@ This program needs to have the following environment variables set:
  - `REFERENCE_MOMENT` (optional): a date time string representing the starting point for tweets (it will default to one week ago).
 
 In case of success, the command will output the result in JSON format in the console.
+
+
+#### `.env` tip
+
+You can use the file `.env~sample` available here as a template to store your environment variables. If you copy it into an `.env` file you can then run:
+
+```bash
+source .env && best-scheduled-tweets
+```
+
+
+#### Sample output
+
+The command will provide an output similar to the following:
+
+```json
+[
+  {
+    "title": "Google planning AI tools for Pi makers this year",
+    "url": "http://social.techcrunch.com/2017/01/25/google-planning-ai-tools-for-pi-makers-this-year/",
+    "description": "Google is intending to expand the dev tools available to makers using the Raspberry Pi microprocessor to power their projects this year -- potentially..",
+    "image": "https://tctechcrunch2011.files.wordpress.com/2016/02/pi3_angled_web.jpg?w=764&h=400&crop=1",
+    "score": 3789
+  },
+  {
+    "title": "RethinkDB: why we failed",
+    "url": "http://www.defstartup.org/2017/01/18/why-rethinkdb-failed.html",
+    "description": "When we announced that RethinkDB is shutting down, I promised to write a post-mortem. I took some time to process the experience, and I can now write about i...",
+    "image": "http://placehold.it/350x150/ffffff/0000000&text=www.defstartup.org",
+    "score": 1022
+  },
+  {
+    "title": "Making Responsive HTML Email Coding Easy With MJML – Smashing Magazine",
+    "url": "https://www.smashingmagazine.com/2017/01/making-responsive-html-email-coding-easy-with-mjml/",
+    "description": "MJML is the only framework making responsive email easy. Learn how to create your own responsive email thanks to MJML in this step-by-step tutorial.",
+    "image": "https://www.smashingmagazine.com/wp-content/uploads/2017/01/mjml-vs-html-preview-opt.png",
+    "score": 963
+  },
+  {
+    "title": "Shut Up and Take My Money!",
+    "url": "/v/33c3-7969-shut_up_and_take_my_money",
+    "description": "FinTechs increasingly cut the ground from under long-established banks’ feet. With a \"Mobile First\" strategy, many set their sights on br...",
+    "image": "https://static.media.ccc.de/media/congress/2016/7969-hd_preview.jpg",
+    "score": 627
+  },
+  {
+    "title": "A Trip Down The LoL Graphics Pipeline",
+    "url": "https://engineering.riotgames.com/news/trip-down-lol-graphics-pipeline",
+    "description": "http://riot.com/2k1Hx8G #RiotTechBlog",
+    "image": "https://engineering.riotgames.com/sites/default/files/articles/55/renderingheadercropped.png",
+    "score": 621
+  },
+  {
+    "title": "Gmail will block .js file attachments starting February 13, 2017",
+    "url": "https://gsuiteupdates.googleblog.com/2017/01/gmail-will-restrict-js-file-attachments.html",
+    "description": "Gmail currently restricts certain file attachments (e.g. .exe, .msc, and .bat) for security reasons, and starting on February 13, 2017 , we...",
+    "image": "http://2.bp.blogspot.com/-7bZ5EziliZQ/VynIS9F7OAI/AAAAAAAASQ0/BJFntXCAntstZe6hQuo5KTrhi5Dyz9yHgCK4B/s1600/googlelogo_color_200x200.png",
+    "score": 436
+  },
+  {
+    "title": "The Underestimated Power Of Color In Mobile App Design",
+    "url": "https://www.smashingmagazine.com/2017/01/underestimated-power-color-mobile-app-design/",
+    "description": "This article covers the most important points related to color in apps, and how to choose colors and contrasts for your app that support usability.",
+    "image": "https://www.smashingmagazine.com/wp-content/uploads/2017/01/color-wheels-graph-opt.png",
+    "score": 420
+  }
+]
+```
 
 
 ## Contributing
