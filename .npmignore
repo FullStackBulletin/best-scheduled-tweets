@@ -4,4 +4,10 @@ node_modules/
 .test_results.txt
 coverage/
 .babel_cache/
-lib/
+test/
+.babelrc
+.editorconfig
+.env~sample
+.eslintrc.js
+circle.yml
+webpack.config.babel.js
