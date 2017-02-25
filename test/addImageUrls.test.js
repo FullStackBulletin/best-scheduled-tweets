@@ -5,7 +5,6 @@ test('It should get an image from the metadata if present or a default image if 
   const testLinks = [
     { metadata: { ogImage: 'ogImage' } },
     { metadata: { twitterImageSrc: 'twitterImageSrc' } },
-    { metadata: { images: new Set(['image1']) } },
     { metadata: { host: 'domain.com' } },
   ];
 
@@ -13,6 +12,5 @@ test('It should get an image from the metadata if present or a default image if 
 
   t.is(linksWithImages[0].image, 'ogImage');
   t.is(linksWithImages[1].image, 'twitterImageSrc');
-  t.is(linksWithImages[2].image, 'image1');
-  t.regex(linksWithImages[3].image, /domain\.com/);
+  t.regex(linksWithImages[2].image, /domain\.com/);
 });
