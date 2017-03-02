@@ -3,13 +3,48 @@ import { spy } from 'sinon';
 import { retrieveMetadata } from '../src/retrieveMetadata';
 
 test('it should retrieve metadata for a set of given links', (t) => {
-  const metaExtractor = spy((obj, cb) => setImmediate(() => cb(null, { ...obj, metadata: { ogImage: 'someImage' } })));
+  const metadataMap = {
+    uri1: {
+      ogImage: 'image1',
+    },
+    uri2: {
+      twitterImageSrc: 'image2',
+      ogTitle: 'title2',
+      ogDescription: 'description2',
+    },
+    uri3: {
+      ogImage: 'image3',
+      title: 'title3',
+      twitterDescription: 'description3',
+    },
+    uri4: {
+      ogImage: 'image4',
+      ogTitle: 'title4',
+      description: 'description4',
+    },
+  };
 
-  const links = [1, 2, 3].map(i => ({ id: `someUri${i}` }));
-  const expectedResult = [1, 2, 3].map(i => ({
-    uri: `someUri${i}`,
-    metadata: { ogImage: 'someImage' },
-    image: 'someImage',
+  const metaExtractor = spy((obj, cb) =>
+    setImmediate(() => cb(null, { ...obj, ...metadataMap[obj.uri] })));
+
+  const links = [
+    {
+      uri: 'uri1',
+      og_object: {
+        title: 'title1',
+        description: 'description1',
+      },
+    },
+    { uri: 'uri2' },
+    { uri: 'uri3' },
+    { uri: 'uri4' },
+  ];
+
+  const expectedResult = links.map((link, i) => ({
+    uri: `uri${i}`,
+    image: `image${i}`,
+    title: `title${i}`,
+    description: `description${i}`,
   }));
 
   retrieveMetadata(metaExtractor)(links)
