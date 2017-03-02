@@ -1,5 +1,5 @@
 import { mapLimit } from 'async';
-import { coalesce } from 'object-path';
+import { coalesce, get } from 'object-path';
 
 const retrieveMetadataFromLink = metaExtractor => (link, cb) => {
   metaExtractor({ uri: link.id }, (err, metadata) => {
@@ -9,8 +9,11 @@ const retrieveMetadataFromLink = metaExtractor => (link, cb) => {
     }
 
     const image = coalesce(metadata, ['ogImage', 'twitterImageSrc'], null);
+    const title = get(link, 'og_object.title') || coalesce(metadata, ['ogTitle', 'title']);
+    const description = get(link, 'og_object.description') || coalesce(metadata, ['ogDescription',
+      'twitterDescription', 'description']);
 
-    return cb(null, { ...link, image, metadata });
+    return cb(null, { ...link, image, title, description, metadata });
   });
 };
 
