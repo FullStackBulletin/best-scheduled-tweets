@@ -8,6 +8,7 @@ import { extractLinks } from './extractLinks';
 import { unique } from './unique';
 import { removeBlacklistedUrls } from './removeBlacklistedUrls';
 import { removeUndefined } from './removeUndefined';
+import { normalizeUrls } from './normalizeUrls';
 import { unshortenLinks } from './unshortenLinks';
 import { getUrlsInfo } from './getUrlsInfo';
 import { retrieveMetadata } from './retrieveMetadata';
@@ -39,6 +40,7 @@ export const bestScheduledTweets = (options) => {
     unique,
     unshortenLinks(request),
     removeUndefined,
+    normalizeUrls,
     unique,
     removeBlacklistedUrls([]),
     getUrlsInfo(opt.fbApp),
