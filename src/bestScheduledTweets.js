@@ -43,7 +43,7 @@ export const bestScheduledTweets = (options) => {
     removeUndefined,
     normalizeUrls,
     unique,
-    removeBlacklistedUrls([]),
+    removeBlacklistedUrls(options.blacklistedUrls),
     getUrlsInfo(opt.fbApp),
     retrieveMetadata(metaExtractor),
     removeLinksWithoutTitleOrDescription,
