@@ -25,10 +25,15 @@ const shebangPlugin = new webpack.BannerPlugin({ banner: '#!/usr/bin/env node', 
 const libConfig = {
   target: 'node',
   context: path.join(__dirname, '.'),
-  entry: './src/index.js',
+  entry: {
+    index: './src/index.js',
+    'utils/fb': './src/utils/fb.js',
+    'utils/flatten': './src/utils/flatten.js',
+    'utils/pipePromises': './src/utils/pipePromises.js',
+  },
   output: {
     path: buildPath,
-    filename: 'index.js',
+    filename: '[name].js',
     library: 'bestScheduledTweets',
     libraryTarget: 'commonjs2',
   },
