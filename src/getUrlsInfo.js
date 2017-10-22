@@ -5,7 +5,7 @@ const getUrlInfo = fbApp => (url, cb) => {
   // conventions
   fbApp.api(encodeURIComponent(url), (res) => {
     if (!res || res.error) {
-      return cb(new Error(res ? res.error : 'Unexpected error'));
+      return cb(new Error(res ? JSON.stringify(res.error) : 'Unexpected error'));
     }
     return cb(null, res);
   });
