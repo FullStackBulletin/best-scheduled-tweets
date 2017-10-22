@@ -27,7 +27,7 @@ test('It should reject if one of the api calls to Facebook fails', (t) => {
 
   const urls = ['url1', 'url2', 'url3'];
 
-  t.throws(getUrlsInfo(fbApp)(urls), 'some error');
+  t.throws(getUrlsInfo(fbApp)(urls), '"some error"');
 });
 
 test('It should reject if one of the api calls to Facebook fails without a message', (t) => {
