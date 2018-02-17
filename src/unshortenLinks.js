@@ -1,7 +1,7 @@
 import { mapLimit } from 'async';
 
 const unshortenLink = request => (link, cb) => {
-  request.get({ url: link, followRedirect: false }, (err, response) => {
+  request.get({ url: encodeURI(link), followRedirect: false }, (err, response) => {
     if (err) {
       // if cannot ping the link mark it as undefined so that it can be removed later
       return cb(null, undefined);
