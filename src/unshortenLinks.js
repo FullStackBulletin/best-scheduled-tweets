@@ -7,7 +7,7 @@ const unshortenLink = request => (link, cb) => {
       return cb(null, undefined);
     }
 
-    return cb(null, response.headers.location ? response.headers.location : link);
+    return cb(null, response.headers.location ? encodeURI(response.headers.location) : link);
   });
 };
 

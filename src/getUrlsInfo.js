@@ -3,7 +3,7 @@ import { mapLimit } from 'async';
 const getUrlInfo = fbApp => (url, cb) => {
   // facebook client doesn't follow callback errors
   // conventions
-  fbApp.api(encodeURIComponent(url), (res) => {
+  fbApp.api(encodeURI(url), (res) => {
     if (!res || res.error) {
       return cb(new Error(res ? JSON.stringify(res.error) : 'Unexpected error'));
     }

@@ -2,7 +2,7 @@ import { mapLimit } from 'async';
 import { coalesce, get } from 'object-path';
 
 const retrieveMetadataFromLink = metaExtractor => (link, cb) => {
-  metaExtractor({ uri: link.id }, (err, metadata) => {
+  metaExtractor({ uri: encodeURI(link.id) }, (err, metadata) => {
     if (err) {
       // if it's not possible to retrieve metadata ignore the link
       return cb(null, undefined);
