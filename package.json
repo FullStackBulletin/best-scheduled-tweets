@@ -31,7 +31,7 @@
     "object-path": "^0.11.3",
     "object-values": "^1.0.0",
     "request": "^2.79.0",
-    "twitter": "^1.7.0"
+    "twitter": "^1.7.1"
   },
   "devDependencies": {
     "ava": "^0.18.1",
