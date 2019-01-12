@@ -11,6 +11,7 @@ const nodeEnv = process.env.NODE_ENV || 'development';
 const isProd = nodeEnv === 'production';
 
 const defaultPlugins = [
+  new webpack.IgnorePlugin(/^electron$/),
   new webpack.LoaderOptionsPlugin({
     minimize: isProd,
     debug: !isProd,
@@ -46,19 +47,18 @@ const libConfig = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loaders: [{
-          loader: 'babel-loader',
-          query: { plugins: babelPlugins, cacheDirectory: '.babel_cache' },
-        }],
+        loaders: [
+          {
+            loader: 'babel-loader',
+            query: { plugins: babelPlugins, cacheDirectory: '.babel_cache' },
+          },
+        ],
       },
     ],
   },
   resolve: {
     extensions: ['.js'],
-    modules: [
-      path.resolve('.'),
-      'node_modules',
-    ],
+    modules: [path.resolve('.'), 'node_modules'],
   },
   plugins: defaultPlugins,
 };
@@ -80,19 +80,18 @@ const cliConfig = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loaders: [{
-          loader: 'babel-loader',
-          query: { plugins: babelPlugins, cacheDirectory: '.babel_cache' },
-        }],
+        loaders: [
+          {
+            loader: 'babel-loader',
+            query: { plugins: babelPlugins, cacheDirectory: '.babel_cache' },
+          },
+        ],
       },
     ],
   },
   resolve: {
     extensions: ['.js'],
-    modules: [
-      path.resolve('.'),
-      'node_modules',
-    ],
+    modules: [path.resolve('.'), 'node_modules'],
   },
   plugins: [shebangPlugin].concat(defaultPlugins),
 };
