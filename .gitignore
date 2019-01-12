@@ -4,4 +4,3 @@ node_modules/
 .test_results.txt
 coverage/
 .babel_cache/
-lib/
