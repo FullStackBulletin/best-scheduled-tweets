@@ -7,8 +7,7 @@ import pkg from '../package.json';
 import { autoRetrieveAccessToken } from './utils/fb';
 import { bestScheduledTweets } from './bestScheduledTweets';
 
-if (['-h', '--help', 'help', '-v', '--version', 'version']
-      .indexOf(process.argv[2]) !== -1) {
+if (['-h', '--help', 'help', '-v', '--version', 'version'].indexOf(process.argv[2]) !== -1) {
   console.log(
     `Best scheduled tweets - version: ${pkg.version}
 
@@ -35,16 +34,20 @@ const twitterClient = new Twitter({
   access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
 });
 
-const fbApp = autoRetrieveAccessToken(new Facebook({
-  version: 'v2.7',
-  appId: process.env.FACEBOOK_APP_ID,
-  appSecret: process.env.FACEBOOK_APP_SECRET,
-}));
+const fbApp = autoRetrieveAccessToken(
+  new Facebook({
+    version: 'v3.2',
+    appId: process.env.FACEBOOK_APP_ID,
+    appSecret: process.env.FACEBOOK_APP_SECRET,
+  }),
+);
 
 const screenNames = process.env.TWITTER_SCREEN_NAMES.split(',');
-const referenceMoment = process.env.REFERENCE_MOMENT ?
-  moment(process.env.REFERENCE_MOMENT) :
-  moment().subtract('1', 'week').startOf('day');
+const referenceMoment = process.env.REFERENCE_MOMENT
+  ? moment(process.env.REFERENCE_MOMENT)
+  : moment()
+      .subtract('1', 'week')
+      .startOf('day');
 
 const print = data => console.log(JSON.stringify(data, null, 2));
 

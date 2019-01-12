@@ -1,9 +1,14 @@
 import { parse, resolve } from 'url';
 import normalize from 'normalize-url';
 import { coalesce } from 'object-path';
+import debug from 'debug';
 
-export const addCanonicalUrls = linksData =>
-  linksData.map((linkData) => {
+const d = debug('addCanonicalUrls');
+
+export const addCanonicalUrls = (linksData) => {
+  d('Input', linksData);
+
+  const result = linksData.map((linkData) => {
     let url = coalesce(linkData, ['metadata.ogUrl', 'id']);
     if (url) {
       const parts = parse(url);
@@ -15,7 +20,11 @@ export const addCanonicalUrls = linksData =>
     }
 
     return { ...linkData, url };
-  })
-;
+  });
+
+  d('Output', result);
+
+  return result;
+};
 
 export default addCanonicalUrls;

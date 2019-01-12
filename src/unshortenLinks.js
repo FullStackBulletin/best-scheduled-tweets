@@ -1,4 +1,7 @@
 import { mapLimit } from 'async';
+import debug from 'debug';
+
+const d = debug('unshortenLinks');
 
 const unshortenLink = request => (link, cb) => {
   request.get({ url: encodeURI(link), followRedirect: false }, (err, response) => {
@@ -11,14 +14,19 @@ const unshortenLink = request => (link, cb) => {
   });
 };
 
-export const unshortenLinks = request => links => new Promise((resolve) => {
-  const limit = 10;
-  mapLimit(
-    links,
-    limit,
-    unshortenLink(request),
-    (err, unshortenedLinks) => resolve(unshortenedLinks),
-  );
-});
+export const unshortenLinks = request => (links) => {
+  d('Input', links);
+
+  const result = new Promise((resolve) => {
+    const limit = 10;
+    mapLimit(links, limit, unshortenLink(request), (err, unshortenedLinks) =>
+      resolve(unshortenedLinks),
+    );
+  });
+
+  d('Output', result);
+
+  return result;
+};
 
 export default unshortenLinks;
