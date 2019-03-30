@@ -13,11 +13,12 @@ const retrieveMetadataFromLink = metaExtractor => (link, cb) => {
 
     const image = coalesce(metadata, ['ogImage', 'twitterImageSrc'], null);
     const title = get(link, 'og_object.title') || coalesce(metadata, ['ogTitle', 'title']);
-    const description =
-      get(link, 'og_object.description') ||
-      coalesce(metadata, ['ogDescription', 'twitterDescription', 'description']);
+    const description = get(link, 'og_object.description')
+      || coalesce(metadata, ['ogDescription', 'twitterDescription', 'description']);
 
-    return cb(null, { ...link, image, title, description, metadata });
+    return cb(null, {
+      ...link, image, title, description, metadata,
+    });
   });
 };
 
@@ -26,8 +27,11 @@ export const retrieveMetadata = metaExtractor => (links) => {
 
   const result = new Promise((resolve) => {
     const limit = 10;
-    mapLimit(links, limit, retrieveMetadataFromLink(metaExtractor), (err, linksWithMetadata) =>
-      resolve(linksWithMetadata),
+    mapLimit(
+      links,
+      limit,
+      retrieveMetadataFromLink(metaExtractor),
+      (err, linksWithMetadata) => resolve(linksWithMetadata),
     );
   });
 

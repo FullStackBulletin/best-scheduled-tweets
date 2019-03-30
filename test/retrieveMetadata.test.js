@@ -24,8 +24,9 @@ test('it should retrieve metadata for a set of given links', (t) => {
     },
   };
 
-  const metaExtractor = spy((obj, cb) =>
-    setImmediate(() => cb(null, { ...obj, ...metadataMap[obj.uri] })));
+  const metaExtractor = spy(
+    (obj, cb) => setImmediate(() => cb(null, { ...obj, ...metadataMap[obj.uri] })),
+  );
 
   const links = [
     {
@@ -48,10 +49,10 @@ test('it should retrieve metadata for a set of given links', (t) => {
   }));
 
   retrieveMetadata(metaExtractor)(links)
-  .then((data) => {
-    t.is(metaExtractor.callCount, links.length);
-    t.deepEqual(data, expectedResult);
-  });
+    .then((data) => {
+      t.is(metaExtractor.callCount, links.length);
+      t.deepEqual(data, expectedResult);
+    });
 });
 
 test('it should return undefined if one link fails', (t) => {

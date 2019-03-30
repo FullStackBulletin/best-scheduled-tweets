@@ -46,8 +46,8 @@ const screenNames = process.env.TWITTER_SCREEN_NAMES.split(',');
 const referenceMoment = process.env.REFERENCE_MOMENT
   ? moment(process.env.REFERENCE_MOMENT)
   : moment()
-      .subtract('1', 'week')
-      .startOf('day');
+    .subtract('1', 'week')
+    .startOf('day');
 
 const print = data => console.log(JSON.stringify(data, null, 2));
 

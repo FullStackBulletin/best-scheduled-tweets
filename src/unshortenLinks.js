@@ -19,8 +19,11 @@ export const unshortenLinks = request => (links) => {
 
   const result = new Promise((resolve) => {
     const limit = 10;
-    mapLimit(links, limit, unshortenLink(request), (err, unshortenedLinks) =>
-      resolve(unshortenedLinks),
+    mapLimit(
+      links,
+      limit,
+      unshortenLink(request),
+      (err, unshortenedLinks) => resolve(unshortenedLinks),
     );
   });
 

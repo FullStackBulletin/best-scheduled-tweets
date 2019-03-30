@@ -7,10 +7,9 @@ export const extractLinks = (tweets) => {
   d('Input', tweets);
 
   const result = tweets.reduce(
-    (links, tweet) =>
-      tweet.entities.urls
-        ? links.concat(tweet.entities.urls.map(link => link.expanded_url))
-        : links,
+    (links, tweet) => tweet.entities.urls
+      ? links.concat(tweet.entities.urls.map(link => link.expanded_url))
+      : links,
     [],
   );
 

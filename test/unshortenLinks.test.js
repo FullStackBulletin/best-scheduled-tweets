@@ -17,9 +17,9 @@ test('it should unshorten a set of given links', (t) => {
   const expectedResult = links.map(link => `unshortened_${link}`);
 
   unshortenLinks(requestMock)(links)
-  .then((unshortenedLinks) => {
-    t.deepEqual(unshortenedLinks, expectedResult);
-  });
+    .then((unshortenedLinks) => {
+      t.deepEqual(unshortenedLinks, expectedResult);
+    });
 });
 
 test('It should return the same link if there is no location header in the response', (t) => {
@@ -34,9 +34,9 @@ test('It should return the same link if there is no location header in the respo
   const links = [1, 2, 3, 4].map(i => `link${i}`);
 
   unshortenLinks(requestMock)(links)
-  .then((unshortenedLinks) => {
-    t.deepEqual(unshortenedLinks, links);
-  });
+    .then((unshortenedLinks) => {
+      t.deepEqual(unshortenedLinks, links);
+    });
 });
 
 test('It should return undefined if one of the links fails to be unshortened', (t) => {
@@ -50,7 +50,7 @@ test('It should return undefined if one of the links fails to be unshortened', (
   const expectedResult = links.map(() => undefined);
 
   unshortenLinks(requestMock)(links)
-  .then((unshortenedLinks) => {
-    t.deepEqual(unshortenedLinks, expectedResult);
-  });
+    .then((unshortenedLinks) => {
+      t.deepEqual(unshortenedLinks, expectedResult);
+    });
 });
