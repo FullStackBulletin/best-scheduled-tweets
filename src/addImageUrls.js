@@ -11,7 +11,7 @@ export const addImageUrls = (links) => {
   const result = links.map((link) => {
     const defaultImage = `https://placeimg.com/500/240/tech?rnd=${Math.round(Math.random() * 999999)}`;
     let image = coalesce(link.metadata, ['ogImage', 'twitterImageSrc'], defaultImage);
-    if (image) {
+    if (image && image !== defaultImage) {
       // validates the url
       const { host, path, protocol } = parse(image);
       if (!host || !path) {
