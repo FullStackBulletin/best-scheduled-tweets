@@ -25,6 +25,7 @@ jobs:
           name: Deploy to GitHub and NPM
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              npm run build;
               git tag $(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g') && git push --tags;
               npm publish;
             fi
