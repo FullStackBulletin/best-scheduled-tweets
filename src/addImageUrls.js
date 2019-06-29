@@ -1,5 +1,7 @@
 import { coalesce } from 'object-path';
+import { parse } from 'url';
 import debug from 'debug';
+
 
 const d = debug('addImageUrls');
 
@@ -8,7 +10,14 @@ export const addImageUrls = (links) => {
 
   const result = links.map((link) => {
     const defaultImage = 'https://placeimg.com/500/240/tech';
-    const image = coalesce(link.metadata, ['ogImage', 'twitterImageSrc'], defaultImage);
+    let image = coalesce(link.metadata, ['ogImage', 'twitterImageSrc'], defaultImage);
+    if (image) {
+      // validates the url
+      const { host, path, protocol } = parse(image);
+      if (!host || !path || !protocol) {
+        image = defaultImage;
+      }
+    }
 
     return { ...link, image };
   });

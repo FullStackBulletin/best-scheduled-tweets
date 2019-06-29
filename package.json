@@ -1,6 +1,6 @@
 {
   "name": "best-scheduled-tweets",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "description": "An opinionated library to extract the best links from scheduled tweets from a given Twitter account using Hootsuite and Facebook",
   "repository": {
     "type": "git",
