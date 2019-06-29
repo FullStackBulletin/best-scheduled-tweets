@@ -9,13 +9,14 @@ export const addImageUrls = (links) => {
   d('Input', links);
 
   const result = links.map((link) => {
-    const defaultImage = 'https://placeimg.com/500/240/tech';
+    const defaultImage = `https://placeimg.com/500/240/tech?rnd=${Math.round(Math.random() * 999999)}`;
     let image = coalesce(link.metadata, ['ogImage', 'twitterImageSrc'], defaultImage);
     if (image) {
       // validates the url
       const { host, path, protocol } = parse(image);
-      if (!host || !path || !protocol) {
+      if (!host || !path) {
         image = defaultImage;
+        d(`Found invalid image (${image}), replaced with default one (${defaultImage})`, { host, path, protocol });
       }
     }
 
