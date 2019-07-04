@@ -12,7 +12,9 @@
     "test:lint": "eslint src/**.js test/**.test.js",
     "test:unit": "nyc ava --tap test/**.test.js | tee .test_results.txt | tap-spec",
     "test": "npm run test:lint && npm run test:unit",
-    "build": "rm -rf lib && NODE_ENV=production webpack && chmod +x lib/cli.js"
+    "build": "rm -rf lib && NODE_ENV=production webpack && chmod +x lib/cli.js",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "bin": {
     "best-scheduled-tweets": "lib/cli.js"
@@ -32,7 +34,8 @@
     "object-path": "^0.11.3",
     "object-values": "^1.0.0",
     "request": "^2.88.0",
-    "twitter": "^1.7.0"
+    "twitter": "^1.7.0",
+    "snyk": "^1.189.0"
   },
   "devDependencies": {
     "ava": "^0.18.1",
@@ -66,5 +69,6 @@
   "ava": {
     "require": "babel-register",
     "babel": "inherit"
-  }
+  },
+  "snyk": true
 }
