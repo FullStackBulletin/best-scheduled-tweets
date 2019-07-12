@@ -8,7 +8,7 @@ const retrieveMetadataFromLink = metaExtractor => (link, cb) => {
   metaExtractor({ uri: link.id, timeout: 10000 }, (err, metadata) => {
     if (err) {
       // if it's not possible to retrieve metadata ignore the link
-      return cb(null, undefined);
+      return cb(null);
     }
 
     const image = coalesce(metadata, ['ogImage', 'twitterImageSrc'], null);
@@ -25,13 +25,18 @@ const retrieveMetadataFromLink = metaExtractor => (link, cb) => {
 export const retrieveMetadata = metaExtractor => (links) => {
   d('Input', links);
 
-  const result = new Promise((resolve) => {
+  const result = new Promise((resolve, reject) => {
     const limit = 10;
     mapLimit(
       links,
       limit,
       retrieveMetadataFromLink(metaExtractor),
-      (err, linksWithMetadata) => resolve(linksWithMetadata),
+      (err, linksWithMetadata) => {
+        if (err) {
+          return reject(err);
+        }
+        return resolve(linksWithMetadata);
+      },
     );
   });
 

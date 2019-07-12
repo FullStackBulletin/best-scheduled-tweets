@@ -77,3 +77,26 @@ test('it should return undefined if one link fails', (t) => {
     t.deepEqual(result, expectedResult);
   });
 });
+
+test('it should handle multiple failures', (t) => {
+  // on someUri2 it will fail
+  const metaExtractor = (obj, cb) => setImmediate(
+    () => {
+      if (obj.uri === 'someUri2' || obj.uri === 'someUri3') {
+        return cb(new Error('some error'));
+      }
+
+      return cb(null, obj);
+    },
+  );
+
+  const links = [1, 2, 3].map(i => ({ id: `someUri${i}` }));
+  const expectedResult = [
+    { id: 'someUri1', image: null, metadata: { uri: 'someUri1' } },
+    undefined,
+    undefined,
+  ];
+  retrieveMetadata(metaExtractor)(links).then((result) => {
+    t.deepEqual(result, expectedResult);
+  });
+});
