@@ -1,7 +1,9 @@
+'use strict'
+
 export const pipePromises = (...fn) =>
   fn.reduce((acc, promise) =>
     Promise.resolve(acc).then(promise),
-    undefined,
-  );
+  undefined
+  )
 
-export default pipePromises;
+export default pipePromises

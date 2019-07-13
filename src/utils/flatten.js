@@ -1,6 +1,8 @@
-export const flatten = arr => arr.reduce((acc, current) => {
-  acc.push(...current);
-  return acc;
-}, []);
+'use strict'
 
-export default flatten;
+export const flatten = arr => arr.reduce((acc, current) => {
+  acc.push(...current)
+  return acc
+}, [])
+
+export default flatten

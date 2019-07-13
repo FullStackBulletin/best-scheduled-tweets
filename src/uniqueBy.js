@@ -1,27 +1,29 @@
-import values from 'object-values';
-import { get } from 'object-path';
-import debug from 'debug';
+'use strict'
 
-const d = debug('uniqueBy');
+import values from 'object-values'
+import { get } from 'object-path'
+import debug from 'debug'
+
+const d = debug('uniqueBy')
 
 export const uniqueBy = keyPath => (arr) => {
-  d('Input', { keyPath, arr });
+  d('Input', { keyPath, arr })
 
   const result = values(
     arr.reduce((dict, current) => {
-      const key = get(current, keyPath);
-      const newDict = dict;
+      const key = get(current, keyPath)
+      const newDict = dict
       if (!Object.prototype.hasOwnProperty.call(dict, key)) {
-        newDict[key] = current;
+        newDict[key] = current
       }
 
-      return newDict;
-    }, {}),
-  );
+      return newDict
+    }, {})
+  )
 
-  d('Output', result);
+  d('Output', result)
 
-  return result;
-};
+  return result
+}
 
-export default uniqueBy;
+export default uniqueBy

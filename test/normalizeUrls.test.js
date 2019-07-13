@@ -1,5 +1,7 @@
-import test from 'ava';
-import { normalizeUrls } from '../src/normalizeUrls';
+'use strict'
+
+import test from 'ava'
+import { normalizeUrls } from '../src/normalizeUrls'
 
 test('it should normalize a given array of urls', (t) => {
   const urls = [
@@ -9,18 +11,18 @@ test('it should normalize a given array of urls', (t) => {
     'https://sindresorhus.com:80/',
     'sindresorhus.com/about.html#contact',
     'http://www.sindresorhus.com/about.html#contact',
-    'http://sindresorhus.com/redirect/',
-  ];
+    'http://sindresorhus.com/redirect/'
+  ]
 
   const expectedResult = [
     'http://sindresorhus.com',
-    'http://êxample.com/?a=foo&b=bar',
+    'http://xn--xample-hva.com/?a=foo&b=bar',
     'http://sindresorhus.com',
     'https://sindresorhus.com:80',
     'http://sindresorhus.com/about.html',
     'http://sindresorhus.com/about.html',
-    'http://sindresorhus.com/redirect',
-  ];
+    'http://sindresorhus.com/redirect'
+  ]
 
-  t.deepEqual(normalizeUrls(urls), expectedResult);
-});
+  t.deepEqual(normalizeUrls(urls), expectedResult)
+})

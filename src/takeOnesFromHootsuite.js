@@ -1,15 +1,17 @@
-import debug from 'debug';
+'use strict'
 
-const d = debug('takeOnesFromHootsuite');
+import debug from 'debug'
+
+const d = debug('takeOnesFromHootsuite')
 
 export const takeOnesFromHootsuite = (tweets) => {
-  d('Input', tweets);
+  d('Input', tweets)
 
-  const result = tweets.filter(tweet => tweet.source.match(/Hootsuite/));
+  const result = tweets.filter(tweet => tweet.source.match(/Hootsuite/))
 
-  d('Output', result);
+  d('Output', result)
 
-  return result;
-};
+  return result
+}
 
-export default takeOnesFromHootsuite;
+export default takeOnesFromHootsuite

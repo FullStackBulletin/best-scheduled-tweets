@@ -1,5 +1,7 @@
-import test from 'ava';
-import { keepMinimalData } from '../src/keepMinimalData';
+'use strict'
+
+import test from 'ava'
+import { keepMinimalData } from '../src/keepMinimalData'
 
 test('it should keep minimal data from an array of objects with many properties', (t) => {
   const data = [{
@@ -11,16 +13,16 @@ test('it should keep minimal data from an array of objects with many properties'
     url: 'url',
     image: 'image',
     score: 1,
-    d: 'd',
-  }];
+    d: 'd'
+  }]
 
   const expectedResult = [{
     title: 'title',
     description: 'description',
     url: 'url',
     image: 'image',
-    score: 1,
-  }];
+    score: 1
+  }]
 
-  t.deepEqual(keepMinimalData(data), expectedResult);
-});
+  t.deepEqual(keepMinimalData(data), expectedResult)
+})

@@ -1,1 +1,3 @@
-export * from './bestScheduledTweets';
+'use strict'
+
+export * from './bestScheduledTweets'

@@ -1,15 +1,17 @@
-import debug from 'debug';
+'use strict'
 
-const d = debug('takeN');
+import debug from 'debug'
+
+const d = debug('takeN')
 
 export const takeN = n => (arr) => {
-  d('Input', arr);
+  d('Input', arr)
 
-  const result = arr.slice(0, n);
+  const result = arr.slice(0, n)
 
-  d('Output', result);
+  d('Output', result)
 
-  return result;
-};
+  return result
+}
 
-export default takeN;
+export default takeN

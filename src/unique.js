@@ -1,15 +1,17 @@
-import debug from 'debug';
+'use strict'
 
-const d = debug('unique');
+import debug from 'debug'
+
+const d = debug('unique')
 
 export const unique = (arr) => {
-  d('Input', arr);
+  d('Input', arr)
 
-  const result = Array.from(new Set(arr));
+  const result = Array.from(new Set(arr))
 
-  d('Output', result);
+  d('Output', result)
 
-  return result;
-};
+  return result
+}
 
-export default unique;
+export default unique

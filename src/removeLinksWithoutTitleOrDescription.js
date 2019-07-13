@@ -1,15 +1,17 @@
-import debug from 'debug';
+'use strict'
 
-const d = debug('removeLinksWithoutTitleOrDescription');
+import debug from 'debug'
+
+const d = debug('removeLinksWithoutTitleOrDescription')
 
 export const removeLinksWithoutTitleOrDescription = (links) => {
-  d('Input', links);
+  d('Input', links)
 
-  const result = links.filter(link => link && link.title && link.description);
+  const result = links.filter(link => link && link.title && link.description)
 
-  d('Output', result);
+  d('Output', result)
 
-  return result;
-};
+  return result
+}
 
-export default removeLinksWithoutTitleOrDescription;
+export default removeLinksWithoutTitleOrDescription

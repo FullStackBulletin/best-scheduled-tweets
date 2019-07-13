@@ -1,37 +1,41 @@
-import { mapLimit } from 'async';
-import debug from 'debug';
+'use strict'
 
-const d = debug('getUrlsInfo');
+import mapLimit from 'async/mapLimit'
+import debug from 'debug'
+
+const d = debug('getUrlsInfo')
 
 const getUrlInfo = fbApp => (url, cb) => {
   // facebook client doesn't follow callback errors
   // conventions
+  d('Calling FB open graph apis with', { id: encodeURI(url), fields: ['engagement'] })
   fbApp.api('', { id: encodeURI(url), fields: ['engagement'] }, (res) => {
+    d('FB Open Graph response', res)
     if (!res || res.error) {
-      return cb(new Error(res ? JSON.stringify(res.error) : 'Unexpected error'));
+      return cb(new Error(res ? JSON.stringify(res.error) : 'Unexpected error'))
     }
-    return cb(null, res);
-  });
-};
+    return cb(null, res)
+  })
+}
 
 export const getUrlsInfo = fbApp => (urls) => {
-  d('Input', urls);
+  d('Input', urls)
 
   const result = new Promise((resolve, reject) => {
-    const getInfo = getUrlInfo(fbApp);
-    const limit = 10;
+    const getInfo = getUrlInfo(fbApp)
+    const limit = 10
     mapLimit(urls, limit, getInfo, (err, urlsInfo) => {
       if (err) {
-        return reject(err);
+        d('Error', err)
+        return reject(err)
       }
 
-      return resolve(urlsInfo);
-    });
-  });
+      d('Output', urlsInfo)
+      return resolve(urlsInfo)
+    })
+  })
 
-  d('Output', result);
+  return result
+}
 
-  return result;
-};
-
-export default getUrlsInfo;
+export default getUrlsInfo

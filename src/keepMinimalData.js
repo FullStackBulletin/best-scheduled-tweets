@@ -1,23 +1,25 @@
-import debug from 'debug';
+'use strict'
 
-const d = debug('keepMinimalData');
+import debug from 'debug'
+
+const d = debug('keepMinimalData')
 
 export const keepMinimalData = (urlsInfo) => {
-  d('Input', urlsInfo);
+  d('Input', urlsInfo)
 
   const result = urlsInfo.map(({
-    title, url, description, image, score,
+    title, url, description, image, score
   }) => ({
     title,
     url,
     description,
     image,
-    score,
-  }));
+    score
+  }))
 
-  d('Output', result);
+  d('Output', result)
 
-  return result;
-};
+  return result
+}
 
-export default keepMinimalData;
+export default keepMinimalData

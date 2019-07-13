@@ -1,25 +1,27 @@
-import request from 'request';
-import metaExtractor from 'meta-extractor';
-import { pipePromises } from './utils/pipePromises';
-import { getLastTweets } from './getLastTweets';
-import { takeOnesFromHootsuite } from './takeOnesFromHootsuite';
-import { takeOnesAfterReferenceMoment } from './takeOnesAfterReferenceMoment';
-import { extractLinks } from './extractLinks';
-import { unique } from './unique';
-import { removeBlacklistedUrls } from './removeBlacklistedUrls';
-import { removeInvalid } from './removeInvalid';
-import { normalizeUrls } from './normalizeUrls';
-import { unshortenLinks } from './unshortenLinks';
-import { getUrlsInfo } from './getUrlsInfo';
-import { retrieveMetadata } from './retrieveMetadata';
-import { removeLinksWithoutTitleOrDescription } from './removeLinksWithoutTitleOrDescription';
-import { addCanonicalUrls } from './addCanonicalUrls';
-import { uniqueBy } from './uniqueBy';
-import { calculateUrlsScore } from './calculateUrlsScore';
-import { sortByScore } from './sortByScore';
-import { takeN } from './takeN';
-import { addImageUrls } from './addImageUrls';
-import { keepMinimalData } from './keepMinimalData';
+'use strict'
+
+import request from 'request'
+import metaExtractor from 'meta-extractor'
+import { pipePromises } from './utils/pipePromises'
+import { getLastTweets } from './getLastTweets'
+import { takeOnesFromHootsuite } from './takeOnesFromHootsuite'
+import { takeOnesAfterReferenceMoment } from './takeOnesAfterReferenceMoment'
+import { extractLinks } from './extractLinks'
+import { unique } from './unique'
+import { removeBlacklistedUrls } from './removeBlacklistedUrls'
+import { removeInvalid } from './removeInvalid'
+import { normalizeUrls } from './normalizeUrls'
+import { unshortenLinks } from './unshortenLinks'
+import { getUrlsInfo } from './getUrlsInfo'
+import { retrieveMetadata } from './retrieveMetadata'
+import { removeLinksWithoutTitleOrDescription } from './removeLinksWithoutTitleOrDescription'
+import { addCanonicalUrls } from './addCanonicalUrls'
+import { uniqueBy } from './uniqueBy'
+import { calculateUrlsScore } from './calculateUrlsScore'
+import { sortByScore } from './sortByScore'
+import { takeN } from './takeN'
+import { addImageUrls } from './addImageUrls'
+import { keepMinimalData } from './keepMinimalData'
 
 export const defaultOptions = {
   twitterClient: undefined,
@@ -28,11 +30,11 @@ export const defaultOptions = {
   screenNames: [],
   maxTweetsPerUser: 200,
   numResults: 7,
-  blacklistedUrls: [],
-};
+  blacklistedUrls: []
+}
 
 export const bestScheduledTweets = (options) => {
-  const opt = { ...defaultOptions, ...options };
+  const opt = { ...defaultOptions, ...options }
   return pipePromises(
     () => getLastTweets(opt.twitterClient, opt.screenNames, opt.maxTweetsPerUser),
     takeOnesFromHootsuite,
@@ -54,8 +56,8 @@ export const bestScheduledTweets = (options) => {
     sortByScore,
     takeN(opt.numResults),
     addImageUrls,
-    keepMinimalData,
-  );
-};
+    keepMinimalData
+  )
+}
 
-export default bestScheduledTweets;
+export default bestScheduledTweets

@@ -1,23 +1,25 @@
-import debug from 'debug';
+'use strict'
 
-const d = debug('removeInvalid');
+import debug from 'debug'
+
+const d = debug('removeInvalid')
 
 export const removeInvalid = (arr) => {
-  d('Input', arr);
+  d('Input', arr)
 
   const result = arr.filter((elem) => {
     if (typeof elem === 'undefined') {
-      return false;
+      return false
     }
 
-    const url = typeof elem.id === 'undefined' ? elem : elem.id;
+    const url = typeof elem.id === 'undefined' ? elem : elem.id
 
-    return /^https?:\/\//i.test(url);
-  });
+    return /^https?:\/\//i.test(url)
+  })
 
-  d('Output', result);
+  d('Output', result)
 
-  return result;
-};
+  return result
+}
 
-export default removeInvalid;
+export default removeInvalid
