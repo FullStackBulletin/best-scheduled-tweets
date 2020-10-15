@@ -29,7 +29,7 @@
     "meta-extractor": "^1.5.1",
     "moment": "^2.24.0",
     "normalize-url": "^4.3.0",
-    "object-path": "^0.11.3",
+    "object-path": "^0.11.5",
     "object-values": "^2.0.0",
     "request": "^2.88.0",
     "twitter": "^1.7.0"
