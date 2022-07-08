@@ -27,7 +27,7 @@
     "debug": "^4.1.1",
     "fb": "^1.1.1",
     "meta-extractor": "^1.5.1",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "normalize-url": "^4.3.0",
     "object-path": "^0.11.3",
     "object-values": "^2.0.0",
