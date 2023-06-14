@@ -1,4 +1,4 @@
-# ⚠️ This library is deprecated
+# ⚠️ This library is deprecated! ⚠️ 
 
 The code in this library has been merged back into [FullStackBulletin/sls-create-newsletter-issue](https://github.com/FullStackBulletin/sls-create-newsletter-issue). For a better description of the reasons, check out [this PR](https://github.com/FullStackBulletin/sls-create-newsletter-issue/pull/55).
 
