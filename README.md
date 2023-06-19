@@ -1,3 +1,7 @@
+# ⚠️ This library is deprecated! ⚠️ 
+
+The code in this library has been merged back into [FullStackBulletin/sls-create-newsletter-issue](https://github.com/FullStackBulletin/sls-create-newsletter-issue). For a better description of the reasons, check out [this PR](https://github.com/FullStackBulletin/sls-create-newsletter-issue/pull/55).
+
 # Best scheduled tweets
 
 [![npm version](https://badge.fury.io/js/best-scheduled-tweets.svg)](http://badge.fury.io/js/best-scheduled-tweets) [![CircleCI](https://circleci.com/gh/FullStackBulletin/best-scheduled-tweets.svg?style=shield)](https://circleci.com/gh/FullStackBulletin/best-scheduled-tweets) [![codecov](https://codecov.io/gh/FullStackBulletin/best-scheduled-tweets/branch/master/graph/badge.svg)](https://codecov.io/gh/FullStackBulletin/best-scheduled-tweets)
